@@ -11,7 +11,8 @@ All notable changes to TerraTrace are documented here.
 - Reworked the visual identity to maroon and blush, added inline SVG icons, responsive menu navigation, a current-section breadcrumb, terms and privacy pages, and a separate test page.
 - Added a local vendor build for pinned Leaflet and GeoTIFF.js, Playwright browser tests, deterministic fixed-raster tests, Lighthouse automation, and a GitHub Pages workflow.
 - Added a brand-asset generator that requires the actual `assets/logo.png`. Generated PNG/ICO assets are not complete until the logo is supplied and the generator is run.
-- GitHub Actions verified 11 passing Playwright tests in headless Chromium, including a live Sentinel-2 COG smoke test, at revision `c1f63c6c63b3f5f52dbd3fb4633bdb6f28ba273e`. Lighthouse on that revision scored 100 accessibility and 99 performance. A documentation-only update follows those results and is queued for a fresh run.
+- GitHub Actions verified 11 passing Playwright tests in headless Chromium, including a live Sentinel-2 COG smoke test, at merged revision `b6fe64a9d1e898a760508053036becbcdb57bf02`. Lighthouse scored 100 accessibility and 97 performance on that run.
+- The initial GitHub Pages deployment attempt failed because Pages is not enabled for this repository and the workflow token cannot create the Pages site. Enable Pages manually in repository Settings, with GitHub Actions as the deployment source, then rerun the workflow.
 
 ## Earlier prototype
 
