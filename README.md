@@ -75,15 +75,22 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 - [ ] Stage 0 — repository setup and project conventions
 - [x] Stage 1 — responsive shell, design system, debug panel, test harness
 - [x] Stage 2 — deterministic synthetic data, indices, change detection
-- [ ] Stage 3 — analysis layer and uncertainty handling
+- [x] Stage 3 — analysis layer and uncertainty handling
 - [x] Stage 4 — interactive analysis workflow
 - [x] Stage 5 — result maps and charts
-- [ ] Stage 6 — module-specific views
-- [ ] Stage 7 — downloadable report
+- [x] Stage 6 — module-specific views
+- [x] Stage 7 — downloadable report
 - [ ] Stage 8 — About view, accessibility, security, and polish
 - [ ] Stage 9 — independent QA and regression audit
 
 Each stage should update this checklist, `CHANGELOG.md`, and tests. Do not mark a stage complete until its implementation and checks have been reviewed.
+
+## Stage 7 report exports
+
+- Export a standalone HTML report containing study settings, summary metrics, simulated signals, AI hypotheses, priority review cells, and limitations.
+- Open the downloaded HTML report in a browser and use its print action to print or save as PDF.
+- Export the signal, hypothesis, and hotspot tables as CSV for spreadsheet review.
+- Exported values are synthetic demo data only. The combined test suite includes 166 assertions; real-browser execution remains unverified.
 
 ## Team
 
