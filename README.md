@@ -39,6 +39,14 @@ Open `index.html` in a modern browser, or serve this folder with any static HTTP
 - Expanded the browser test harness to 50+ assertions. Open the published site with `?test=1` to run them and inspect results in the diagnostics panel.
 - These are synthetic values, not actual satellite measurements; thresholds are illustrative and not scientifically calibrated.
 
+## Stage 3 status
+
+- Added aggregate statistics, percent changed, valid/missing counts, and per-index summaries.
+- Added ranked synthetic hotspots and data-completeness reporting.
+- Kept observed/simulated signals distinct from low-confidence AI hypotheses that require validation.
+- Expanded the browser test harness with 36 analysis assertions; use `?test=1` to run the combined suite.
+- All results remain synthetic; confidence labels are qualitative and not statistically calibrated.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
