@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added dedicated module guidance and caveats for all four TerraTrace modules.
+- Added 15 module contract assertions.
+
+## [0.6.0] - 2026-10-16
+
+- Stage 6: added ClimateWatch, AquaCycle, SolarScope and ClimateRisk views.
+
 - Added synthetic indicator bar chart and responsive synthetic change-grid visualization.
 - Added a table fallback for chart-library unavailability and 20 visualization assertions.
 

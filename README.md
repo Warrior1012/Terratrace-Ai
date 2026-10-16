@@ -60,6 +60,12 @@ Open `index.html` in a modern browser, or serve this folder with any static HTTP
 - Added a synthetic grid visualization with an indicator selector. It is explicitly not a geographic map and has no real coordinates or satellite tiles.
 - Added 20 visualization-contract assertions. The combined suite now contains 136 assertions; browser execution remains unverified.
 
+## Stage 6 status
+
+- Added distinct ClimateWatch, AquaCycle, SolarScope, and ClimateRisk guidance panels with module-specific indicators, investigation questions, and limitations.
+- Module links open in-page details and can set the grid indicator for the next review.
+- Added 15 module-contract assertions. The combined test suite includes 151 assertions; execution in a real browser remains unverified.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
