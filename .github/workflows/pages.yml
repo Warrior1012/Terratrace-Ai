@@ -35,3 +35,14 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify the published site responds
+        run: |
+          for attempt in $(seq 1 12); do
+            if curl -fsS "${{ steps.deployment.outputs.page_url }}" -o /dev/null; then
+              echo "Verified the published site responds."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "The published site did not respond successfully after retries."
+          exit 1
