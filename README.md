@@ -54,6 +54,12 @@ Open `index.html` in a modern browser, or serve this folder with any static HTTP
 - Added 20 workflow-oriented analysis assertions. The combined browser suite now contains 116 assertions; execution in a real browser is not yet verified.
 - Analysis period and focus currently affect the reproducible sample seed and labels; they do not represent real date filters or separate scientific models.
 
+## Stage 5 status
+
+- Added a responsive bar chart for mean synthetic changes across NDVI, NDWI, NDBI, and LST, with an accessible table fallback when Chart.js is unavailable.
+- Added a synthetic grid visualization with an indicator selector. It is explicitly not a geographic map and has no real coordinates or satellite tiles.
+- Added 20 visualization-contract assertions. The combined suite now contains 136 assertions; browser execution remains unverified.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
@@ -65,7 +71,7 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 - [x] Stage 2 — deterministic synthetic data, indices, change detection
 - [ ] Stage 3 — analysis layer and uncertainty handling
 - [x] Stage 4 — interactive analysis workflow
-- [ ] Stage 5 — result maps and charts
+- [x] Stage 5 — result maps and charts
 - [ ] Stage 6 — module-specific views
 - [ ] Stage 7 — downloadable report
 - [ ] Stage 8 — About view, accessibility, security, and polish
