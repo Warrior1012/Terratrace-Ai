@@ -80,7 +80,7 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 - [x] Stage 5 — result maps and charts
 - [x] Stage 6 — module-specific views
 - [x] Stage 7 — downloadable report
-- [ ] Stage 8 — About view, accessibility, security, and polish
+- [x] Stage 8 — About view, accessibility, security, and polish
 - [ ] Stage 9 — independent QA and regression audit
 
 Each stage should update this checklist, `CHANGELOG.md`, and tests. Do not mark a stage complete until its implementation and checks have been reviewed.
@@ -91,6 +91,13 @@ Each stage should update this checklist, `CHANGELOG.md`, and tests. Do not mark 
 - Open the downloaded HTML report in a browser and use its print action to print or save as PDF.
 - Export the signal, hypothesis, and hotspot tables as CSV for spreadsheet review.
 - Exported values are synthetic demo data only. The combined test suite includes 166 assertions; real-browser execution remains unverified.
+
+## Stage 8 About view
+
+- Added a responsive, accessible conceptual pipeline diagram and a mobile step-by-step alternative.
+- Documented proposed Sentinel-2, Landsat, CHIRPS rainfall, and SRTM terrain inputs; none are connected in the demo.
+- Added limitations, a four-phase roadmap, and explicitly indicative business pricing (₹999–₹4,999 per report; ₹9,999 professional tier with billing period TBD).
+- Added visible keyboard focus styling, reduced-motion support, and 15 About-view contract assertions. Pricing is a concept, not a live offer.
 
 ## Team
 
