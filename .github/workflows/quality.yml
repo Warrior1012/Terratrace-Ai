@@ -1,0 +1,35 @@
+name: TerraTrace browser quality
+on:
+  push:
+    branches: [main, real-data-redesign]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  chromium-and-lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Run Lighthouse
+        run: |
+          python3 -m http.server 4173 > /tmp/terratrace-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break || sleep 1; done
+          npx lighthouse http://127.0.0.1:4173/ --chrome-flags="--headless --no-sandbox" --only-categories=accessibility,performance --output=json --output-path=./lighthouse-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: terratrace-quality-results
+          path: |
+            playwright-report/
+            lighthouse-report.json
+          if-no-files-found: ignore
