@@ -9,7 +9,7 @@
 
   function generate(options) {
     options = options || {};
-    var seed = options.seed == null ? "yamuna-floodplain-demo" : options.seed;
+    var seed = options.seed == null ? "terratrace-sample-v1" : options.seed;
     var size = Math.floor(Number(options.size == null ? 12 : options.size));
     if (!Number.isFinite(size) || size < 2 || size > 50) throw new RangeError("Grid size must be between 2 and 50");
     var random = rng.create(seed);
