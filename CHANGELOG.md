@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added downloadable standalone HTML analysis reports and CSV data exports with prominent synthetic-data disclaimers.
+- Added 15 report-export contract assertions.
+
+## [0.7.0] - 2026-10-16
+
+- Stage 7: added HTML report export, print/save-to-PDF workflow, and CSV export.
+
 - Added dedicated module guidance and caveats for all four TerraTrace modules.
 - Added 15 module contract assertions.
 
