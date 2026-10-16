@@ -27,6 +27,7 @@ for (const width of [360, 390]) {
 test("sample mode is explicit and clearly labeled", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("Sample data").check();
+  await expect(page.locator(".map-panel")).toBeHidden();
   await page.getByRole("button", { name: "Compare selected dates" }).click();
   await expect(page.getByText(/SAMPLE DATA.*Deterministic demonstration only/i)).toBeVisible();
   await expect(page.getByText(/No real place name, coordinates or satellite scene/i)).toBeVisible();
