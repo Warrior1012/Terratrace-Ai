@@ -69,7 +69,7 @@ test("sample report and CSV exports download with clear labeling", async ({ page
 
 test("active navigation and breadcrumb follow scrolling", async ({ page }) => {
   await page.goto("/");
-  await page.evaluate(() => window.scrollTo(0, document.querySelector("#modules").offsetTop + 180));
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; const section = document.querySelector("#modules"); window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY + 180); });
   await expect(page.locator('#site-nav a[href="#modules"]')).toHaveClass(/active/, { timeout: 5000 });
   await expect(page.locator("#breadcrumb")).toHaveText("Modules");
 });
@@ -86,6 +86,7 @@ test("live Sentinel-2 scenes and COG windows produce a measured comparison", asy
   await page.getByLabel("Study area name").fill("Live data smoke test");
   await page.getByLabel("Earlier date").fill("2024-10-10");
   await page.getByLabel("Later date").fill("2025-10-10");
+  await page.getByRole("button", { name: "Draw area on map" }).click();
   await page.evaluate(() => {
     window.TT.appMap.fire("click", { latlng: window.L.latLng(28.58, 77.32) });
     window.TT.appMap.fire("click", { latlng: window.L.latLng(28.60, 77.34) });
