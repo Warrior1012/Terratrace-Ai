@@ -23,6 +23,14 @@ TerraTrace is a mobile-first, static web prototype for exploring climate-related
 
 Open `index.html` in a modern browser, or serve this folder with any static HTTP server. No build step, backend, API key, or package installation is required. Leaflet and Chart.js are loaded from pinned CDN versions when internet access is available; graceful fallbacks should be used where possible.
 
+## Stage 1 status
+
+- Responsive mobile-first workspace shell and navigation added.
+- Four module cards and sample analysis setup form added.
+- Synthetic-data disclosure, keyboard focus styles, skip link, and reduced-motion handling added.
+- `?debug=1` opens diagnostics; `?test=1` runs the starter test harness.
+- Analysis button currently prepares a local demo workspace only; pipeline and results arrive in later stages.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
@@ -30,7 +38,7 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 ## Quality and roadmap
 
 - [ ] Stage 0 — repository setup and project conventions
-- [ ] Stage 1 — responsive shell, design system, debug panel, test harness
+- [x] Stage 1 — responsive shell, design system, debug panel, test harness
 - [ ] Stage 2 — deterministic synthetic data, indices, change detection
 - [ ] Stage 3 — analysis layer and uncertainty handling
 - [ ] Stage 4 — interactive analysis workflow
