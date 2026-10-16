@@ -20,7 +20,7 @@ jobs:
       - run: npm run test:e2e
       - name: Run Lighthouse
         run: |
-          python3 -m http.server 4173 > /tmp/terratrace-server.log 2>&1 &
+          python3 -m http.server 4173 --directory dist > /tmp/terratrace-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break || sleep 1; done
