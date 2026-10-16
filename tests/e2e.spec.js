@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+const fs = require("node:fs/promises");
 test("production page does not load test or debug harness", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("#debug-panel")).toHaveCount(0);
@@ -20,6 +21,7 @@ for (const width of [360, 390]) {
     await expect(page.locator("#site-nav")).toHaveClass(/is-open/);
     await page.getByRole("link", { name: "Analyze", exact: true }).click();
     await expect(page.locator("#site-nav")).not.toHaveClass(/is-open/);
+    await expect(page.locator("#breadcrumb")).toHaveText("Analyze");
   });
 }
 test("sample mode is explicit and clearly labeled", async ({ page }) => {
@@ -56,8 +58,10 @@ test("sample report and CSV exports download with clear labeling", async ({ page
   await page.getByRole("button", { name: "Export report" }).click();
   const report = await reportPromise;
   expect(report.suggestedFilename()).toBe("terratrace-report.html");
+  expect(await fs.readFile(await report.path(), "utf8")).toContain("Sample data only");
   const csvPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export CSV" }).click();
   const csv = await csvPromise;
   expect(csv.suggestedFilename()).toBe("terratrace-report.csv");
+  expect(await fs.readFile(await csv.path(), "utf8")).toContain("Sample data only");
 });
