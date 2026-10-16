@@ -1,0 +1,15 @@
+{
+  "name": "terratrace-static",
+  "version": "0.9.0",
+  "private": true,
+  "description": "TerraTrace static Sentinel-2 comparison prototype",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:browser-unit": "playwright test tests/browser-unit.spec.js",
+    "audit:lighthouse": "lighthouse http://127.0.0.1:4173/ --chrome-flags=\"--headless --no-sandbox\" --output=json --output-path=./lighthouse-report.json"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "lighthouse": "12.8.2"
+  }
+}
