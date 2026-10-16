@@ -4,8 +4,8 @@
   global.TT.config = Object.freeze({
     appName: "TerraTrace",
     version: "0.1.0",
-    dataMode: "synthetic",
-    isSynthetic: true,
+    dataMode: "sentinel-2-or-sample",
+    isSynthetic: false,
     debugQueryParam: "debug",
     testQueryParam: "test",
     maxSiteNameLength: 80,
