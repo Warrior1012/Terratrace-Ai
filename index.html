@@ -36,7 +36,7 @@
 <a class="nav-link" href="#about">About</a>
 </nav>
 </header>
-<div class="breadcrumb-row section-wrap" id="breadcrumb" aria-live="polite">Workspace / Overview</div>
+<div class="breadcrumb-row section-wrap" id="breadcrumb" aria-live="polite">Overview</div>
 <main id="main">
 <section class="hero section-wrap" id="overview">
 <p class="eyebrow">SATELLITE CHANGE ANALYSIS</p>
@@ -54,7 +54,7 @@
 <label class="field"><span>Study area name</span><input id="site-name" maxlength="80" value="" placeholder="Name this area" autocomplete="off"></label>
 <p class="field-help">This is a label only. Draw the area on the map.</p>
 <div class="date-grid"><label class="field"><span>Earlier date</span><input id="date-before" type="date" value="2024-06-15" required></label><label class="field"><span>Later date</span><input id="date-after" type="date" value="2025-06-15" required></label></div>
-<div class="map-actions"><button class="button button-secondary" id="draw-aoi" type="button">Draw area on map</button><button class="button button-quiet" id="clear-aoi" type="button">Clear area</button></div>
+<div class="map-actions"><button class="button button-secondary" id="draw-aoi" type="button" aria-pressed="false">Draw area on map</button><button class="button button-quiet" id="clear-aoi" type="button">Clear area</button></div>
 <p id="aoi-status" class="field-help" aria-live="polite">Choose Draw area, then tap two map corners to define a rectangle.</p>
 <div class="size-warning" id="size-warning" hidden>Areas above 25 square kilometres trigger a warning. Areas above 100 square kilometres are rejected. The output grid is capped at 128 by 128 pixels.</div>
 
