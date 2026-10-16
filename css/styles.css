@@ -7,3 +7,5 @@
 @media(max-width:640px){.legal-header{flex-wrap:wrap}.legal-header .site-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;gap:4px;width:100%;padding:0;border:0;background:transparent}.legal-header .nav-link{padding:8px 10px}}
 
 .analysis-layout.sample-mode{grid-template-columns:minmax(0,1fr)}.analysis-layout.sample-mode .map-panel,.analysis-layout.sample-mode .map-actions,.analysis-layout.sample-mode #aoi-status,.analysis-layout.sample-mode #size-warning{display:none}
+
+.button-secondary[aria-pressed="true"]{background:var(--maroon);color:#fff;border-color:var(--maroon)}
