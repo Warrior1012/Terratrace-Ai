@@ -31,6 +31,14 @@ Open `index.html` in a modern browser, or serve this folder with any static HTTP
 - `?debug=1` opens diagnostics; `?test=1` runs the starter test harness.
 - Analysis button currently prepares a local demo workspace only; pipeline and results arrive in later stages.
 
+## Stage 2 status
+
+- Added deterministic seeded synthetic grid data with paired before/after observations.
+- Added normalized-difference utilities for NDVI, NDWI, and NDBI, plus land-surface temperature context.
+- Added threshold-based change classes and simulated-change flags.
+- Expanded the browser test harness to 50+ assertions. Open the published site with `?test=1` to run them and inspect results in the diagnostics panel.
+- These are synthetic values, not actual satellite measurements; thresholds are illustrative and not scientifically calibrated.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
@@ -39,7 +47,7 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 
 - [ ] Stage 0 — repository setup and project conventions
 - [x] Stage 1 — responsive shell, design system, debug panel, test harness
-- [ ] Stage 2 — deterministic synthetic data, indices, change detection
+- [x] Stage 2 — deterministic synthetic data, indices, change detection
 - [ ] Stage 3 — analysis layer and uncertainty handling
 - [ ] Stage 4 — interactive analysis workflow
 - [ ] Stage 5 — result maps and charts

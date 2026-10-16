@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added seeded synthetic landscape generation, vegetation/water/built-up indices, and change classification.
+- Expanded browser tests to cover deterministic data, ranges, index calculations, and detection behavior.
+
+## [0.2.0] - 2026-10-16
+
+- Stage 2: implemented synthetic data, index calculations, and change-detection primitives.
+
 - Added responsive application shell, navigation, module cards, synthetic-data disclaimer, debug panel, and starter tests.
 - Added classic-script namespace scaffolding for planned analysis modules.
 
