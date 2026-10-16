@@ -69,7 +69,8 @@ test("sample report and CSV exports download with clear labeling", async ({ page
 
 test("active navigation and breadcrumb follow scrolling", async ({ page }) => {
   await page.goto("/");
-  await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; const section = document.querySelector("#modules"); window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY + 180); });
+  await page.locator("#modules").scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
   await expect(page.locator('#site-nav a[href="#modules"]')).toHaveClass(/active/, { timeout: 5000 });
   await expect(page.locator("#breadcrumb")).toHaveText("Modules");
 });
