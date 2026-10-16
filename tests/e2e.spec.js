@@ -65,3 +65,16 @@ test("sample report and CSV exports download with clear labeling", async ({ page
   expect(csv.suggestedFilename()).toBe("terratrace-report.csv");
   expect(await fs.readFile(await csv.path(), "utf8")).toContain("Sample data only");
 });
+
+test("active navigation and breadcrumb follow scrolling", async ({ page }) => {
+  await page.goto("/");
+  await page.evaluate(() => window.scrollTo(0, document.querySelector("#modules").offsetTop + 180));
+  await expect(page.locator('#site-nav a[href="#modules"]')).toHaveClass(/active/, { timeout: 5000 });
+  await expect(page.locator("#breadcrumb")).toHaveText("Modules");
+});
+test("legal page navigation remains visible at mobile width", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto("/terms.html");
+  await expect(page.locator(".legal-header .site-nav")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Privacy", exact: true })).toBeVisible();
+});
