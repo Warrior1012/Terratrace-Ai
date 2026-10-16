@@ -1,5 +1,5 @@
 const fs=require("node:fs");const path=require("node:path");
-const root=__dirname,out=path.join(root,"dist");
+const root=path.join(__dirname,".."),out=path.join(root,"dist");
 fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
 for(const item of ["index.html","terms.html","privacy.html","css","js","assets","tests",".nojekyll"]){const src=path.join(root,item);if(fs.existsSync(src))fs.cpSync(src,path.join(out,item),{recursive:true});}
 const vendor=path.join(out,"vendor");fs.mkdirSync(vendor,{recursive:true});
