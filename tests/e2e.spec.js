@@ -9,6 +9,7 @@ test("production page does not load test or debug harness", async ({ page }) => 
   await expect(page.locator('input[name="data-mode"][value="real"]')).toBeChecked();
   const resourceUrls = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes => nodes.map(n => n.getAttribute("src") || n.getAttribute("href") || ""));
   expect(resourceUrls.every(url => !url.startsWith("https://") && !url.startsWith("http://"))).toBe(true);
+  expect(scripts.some(src => src.includes("geotiff.js"))).toBe(false);
 });
 for (const width of [360, 390]) {
   test("mobile layout fits viewport at " + width + "px", async ({ page }) => {
@@ -103,5 +104,6 @@ test("live Sentinel-2 scenes and COG windows produce a measured comparison", asy
   await expect(page.locator("#scene-details")).toBeVisible();
   await expect(page.locator("#scene-details")).toContainText("Cloud cover");
   await expect(page.locator("#class-results")).toContainText("NDVI");
+  await expect(page.locator('script[src*="vendor/geotiff.js"]')).toHaveCount(1);
   await expect(page.locator("#export-report")).toBeEnabled();
 });
