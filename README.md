@@ -79,7 +79,7 @@ To add these in GitHub, open the repository page, select the settings gear besid
 
 ## GitHub Pages deployment
 
-A Pages workflow is included at `.github/workflows/pages.yml`. In GitHub, open **Settings > Pages** and set the build and deployment source to **GitHub Actions**. The workflow builds `dist/` with the pinned local libraries and deploys that folder on pushes to `main`. Confirm the Actions run succeeds and open the URL shown by the deployment before sharing it as live.
+A Pages workflow is included at `.github/workflows/pages.yml`. The first deployment attempt on `main` failed because the repository has no Pages site enabled and the workflow token cannot create one. In GitHub, open **Settings > Pages** and set the build and deployment source to **GitHub Actions**, then rerun the Pages workflow. It builds `dist/` with pinned local libraries and deploys that folder on pushes to `main`. Confirm the Actions run succeeds and open the URL shown by the deployment before sharing it as live.
 
 The website URL, repository About description/topics and Pages setting cannot be confirmed from this repository code alone.
 
