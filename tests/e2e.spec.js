@@ -77,5 +77,5 @@ test("legal page navigation remains visible at mobile width", async ({ page }) =
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto("/terms.html");
   await expect(page.locator(".legal-header .site-nav")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Privacy", exact: true })).toBeVisible();
+  await expect(page.locator('.legal-header .site-nav a[href="privacy.html"]')).toBeVisible();
 });
