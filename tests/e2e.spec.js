@@ -7,7 +7,7 @@ test("production page does not load test or debug harness", async ({ page }) => 
   await expect(page.getByRole("heading", { name: /Compare satellite observations/i })).toBeVisible();
   await expect(page.locator('input[name="data-mode"][value="real"]')).toBeChecked();
   const resourceUrls = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes => nodes.map(n => n.getAttribute("src") || n.getAttribute("href") || ""));
-  expect(resourceUrls.every(url => !/^https?:\\/\\//i.test(url))).toBe(true);
+  expect(resourceUrls.every(url => !url.startsWith("https://") && !url.startsWith("http://"))).toBe(true);
 });
 for (const width of [360, 390]) {
   test("mobile layout fits viewport at " + width + "px", async ({ page }) => {
