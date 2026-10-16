@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added an About view with a conceptual pipeline diagram, planned data sources, scientific limitations, roadmap, and indicative pricing.
+- Improved keyboard focus visibility and reduced-motion handling; added 15 About-view assertions.
+
+## [0.8.0] - 2026-10-16
+
+- Stage 8: completed About content, accessibility refinements, and responsive polish.
+
 - Added downloadable standalone HTML analysis reports and CSV data exports with prominent synthetic-data disclaimers.
 - Added 15 report-export contract assertions.
 
