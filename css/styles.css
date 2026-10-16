@@ -7,3 +7,6 @@
 
 /* Stage 6: module-specific guidance */
 .module-detail{margin:18px 0;padding:22px;scroll-margin-top:24px}.module-detail[hidden]{display:none}.module-detail h2{font-size:25px;margin:4px 0 10px}.module-detail h3{font-size:14px;margin:18px 0 8px}.module-detail p,.module-detail li{font-size:13px;line-height:1.65}.module-detail ul{padding-left:20px}.module-caveat{padding:12px;background:#f4f0df;border-radius:8px;color:#594b29}.module-card a{cursor:pointer}
+
+/* Stage 7: export controls */
+.report-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0;padding:18px;border:1px solid var(--border,#dfe5e1);border-radius:12px}.report-actions .panel-caption{flex-basis:100%;margin:0}.report-actions button{min-height:44px}@media(max-width:520px){.report-actions{align-items:stretch}.report-actions button{width:100%}}
