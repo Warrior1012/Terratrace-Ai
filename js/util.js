@@ -18,7 +18,7 @@
       return text ? text.slice(0, 80) : (fallback || "Untitled study area");
     },
     formatNumber: function (value, digits) {
-      if (!Number.isFinite(Number(value))) return "—";
+      if (!Number.isFinite(Number(value))) return "-";
       return Number(value).toLocaleString("en-IN", { maximumFractionDigits: digits == null ? 2 : digits });
     }
   };

@@ -2,67 +2,17 @@
 
 All notable changes to TerraTrace are documented here.
 
-## [Unreleased]
+## Unreleased
 
-- Added an About view with a conceptual pipeline diagram, planned data sources, scientific limitations, roadmap, and indicative pricing.
-- Improved keyboard focus visibility and reduced-motion handling; added 15 About-view assertions.
+- Replaced the sample-only default workflow with a real-data-first Sentinel-2 Level-2A comparison path using Element 84 Earth Search STAC and cloud-optimized GeoTIFF assets.
+- Added least-cloudy scene selection near each requested date, scene provenance, NDVI, NDWI, MNDWI and NDBI differences, per-class area estimates, and a Leaflet map with an NDVI overlay.
+- Kept deterministic generated values behind an explicit Sample data toggle. Real-data failures now display an error instead of substituting sample values.
+- Relabeled template prompts as Rule-based interpretation. No AI model is included.
+- Reworked the visual identity to maroon and blush, added inline SVG icons, responsive menu navigation, a current-section breadcrumb, terms and privacy pages, and a separate test page.
+- Added a local vendor build for pinned Leaflet and GeoTIFF.js, Playwright browser tests, deterministic fixed-raster tests, Lighthouse automation, and a GitHub Pages workflow.
+- Added a brand-asset generator that requires the actual `assets/logo.png`. Generated PNG/ICO assets are not complete until the logo is supplied and the generator is run.
+- GitHub Actions verified 11 passing Playwright tests in headless Chromium, including a live Sentinel-2 COG smoke test, at revision `c1f63c6c63b3f5f52dbd3fb4633bdb6f28ba273e`. Lighthouse on that revision scored 100 accessibility and 99 performance. A documentation-only update follows those results and is queued for a fresh run.
 
-## [0.8.0] - 2026-10-16
+## Earlier prototype
 
-- Stage 8: completed About content, accessibility refinements, and responsive polish.
-
-- Added downloadable standalone HTML analysis reports and CSV data exports with prominent synthetic-data disclaimers.
-- Added 15 report-export contract assertions.
-
-## [0.7.0] - 2026-10-16
-
-- Stage 7: added HTML report export, print/save-to-PDF workflow, and CSV export.
-
-- Added dedicated module guidance and caveats for all four TerraTrace modules.
-- Added 15 module contract assertions.
-
-## [0.6.0] - 2026-10-16
-
-- Stage 6: added ClimateWatch, AquaCycle, SolarScope and ClimateRisk views.
-
-- Added synthetic indicator bar chart and responsive synthetic change-grid visualization.
-- Added a table fallback for chart-library unavailability and 20 visualization assertions.
-
-## [0.5.0] - 2026-10-16
-
-- Stage 5: added results chart and synthetic grid visualization.
-
-- Added the interactive analysis workflow and results summary with synthetic-data labels.
-- Added 20 additional workflow-oriented assertions.
-
-## [0.4.0] - 2026-10-16
-
-- Stage 4: connected the setup form to analysis aggregation and displayed signals, hypotheses, and ranked review cells.
-
-- Added analysis aggregation, data completeness, ranked hotspots, and distinct observed-signal versus AI-hypothesis records.
-- Added 36 tests for analysis statistics, validation, provenance, metrics, and limitations.
-
-## [0.3.0] - 2026-10-16
-
-- Stage 3: implemented synthetic analysis summaries and evidence-separated hypotheses.
-
-- Added seeded synthetic landscape generation, vegetation/water/built-up indices, and change classification.
-- Expanded browser tests to cover deterministic data, ranges, index calculations, and detection behavior.
-
-## [0.2.0] - 2026-10-16
-
-- Stage 2: implemented synthetic data, index calculations, and change-detection primitives.
-
-- Added responsive application shell, navigation, module cards, synthetic-data disclaimer, debug panel, and starter tests.
-- Added classic-script namespace scaffolding for planned analysis modules.
-
-## [0.1.0] - 2026-10-16
-
-- Stage 1: established the mobile-first interface and test/debug harness.
-
-- Project setup and prototype scope documented.
-- Synthetic-data-only policy and scientific interpretation limits documented.
-
-## [0.0.0] - 2026-10-16
-
-- Initial repository setup.
+The earlier prototype contained seeded synthetic values, template interpretations, and a non-geographic grid. Those components remain only for the explicit Sample data mode where required. Legacy chart, map, debug, report and module scripts that were no longer used by the new page have been removed.

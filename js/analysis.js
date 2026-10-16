@@ -80,24 +80,24 @@
       { id: "built-surface-change", type: "OBSERVED_SIMULATED_SIGNAL", label: "Cells with a built-surface-index change", count: builtSignals, percent: percent(builtSignals, total), metric: "ndbi" },
       { id: "surface-temperature-change", type: "OBSERVED_SIMULATED_SIGNAL", label: "Cells with a land-surface-temperature shift", count: temperatureSignals, percent: percent(temperatureSignals, total), metric: "lstC" }
     ];
-    var hypotheses = [];
-    if (vegetationDeclines > 0) hypotheses.push({ id: "vegetation-stress-hypothesis", type: "AI_HYPOTHESIS", label: "Possible vegetation stress", rationale: "A decline in the synthetic vegetation index may be consistent with stress, seasonal effects, land management, or data artefacts.", evidenceMetrics: ["ndvi"], confidence: "low", requiresValidation: true });
-    if (waterSignals > 0) hypotheses.push({ id: "surface-water-variability-hypothesis", type: "AI_HYPOTHESIS", label: "Possible surface-water variability", rationale: "A change in the synthetic water index may reflect surface-water variation, seasonality, or observation differences; it says nothing about groundwater or water quality.", evidenceMetrics: ["ndwi"], confidence: "low", requiresValidation: true });
-    if (builtSignals > 0) hypotheses.push({ id: "built-surface-change-hypothesis", type: "AI_HYPOTHESIS", label: "Possible built-surface change", rationale: "A built-surface-index change can motivate review, but it does not prove construction or land-use conversion.", evidenceMetrics: ["ndbi"], confidence: "low", requiresValidation: true });
-    if (temperatureSignals > 0) hypotheses.push({ id: "surface-heat-hypothesis", type: "AI_HYPOTHESIS", label: "Possible surface-heat pattern", rationale: "A land-surface-temperature shift may warrant contextual review; LST is not air temperature and does not establish climate causation.", evidenceMetrics: ["lstC"], confidence: "low", requiresValidation: true });
+    var interpretations = [];
+    if (vegetationDeclines > 0) interpretations.push({ id: "vegetation-stress-hypothesis", type: "RULE_BASED_INTERPRETATION", label: "Possible vegetation stress", rationale: "A decline in the synthetic vegetation index may be consistent with stress, seasonal effects, land management, or data artefacts.", evidenceMetrics: ["ndvi"], confidence: "low", requiresValidation: true });
+    if (waterSignals > 0) interpretations.push({ id: "surface-water-variability-hypothesis", type: "RULE_BASED_INTERPRETATION", label: "Possible surface-water variability", rationale: "A change in the synthetic water index may reflect surface-water variation, seasonality, or observation differences; it says nothing about groundwater or water quality.", evidenceMetrics: ["ndwi"], confidence: "low", requiresValidation: true });
+    if (builtSignals > 0) interpretations.push({ id: "built-surface-change-hypothesis", type: "RULE_BASED_INTERPRETATION", label: "Possible built-surface change", rationale: "A built-surface-index change can motivate review, but it does not prove construction or land-use conversion.", evidenceMetrics: ["ndbi"], confidence: "low", requiresValidation: true });
+    if (temperatureSignals > 0) interpretations.push({ id: "surface-heat-hypothesis", type: "RULE_BASED_INTERPRETATION", label: "Possible surface-heat pattern", rationale: "A land-surface-temperature shift may warrant contextual review; LST is not air temperature and does not establish climate causation.", evidenceMetrics: ["lstC"], confidence: "low", requiresValidation: true });
     return {
       meta: { analysisMode: "synthetic-change-analysis", synthetic: true, seed: dataset.meta && dataset.meta.seed || null, cellCount: total, dataCompletenessPercent: dataCompleteness, caveat: "Synthetic demo only. Not validated for scientific, operational, financial, or safety decisions." },
       metrics: metrics,
       overview: { cellCount: total, dataCompletenessPercent: dataCompleteness, vegetationDeclineCount: vegetationDeclines, surfaceWaterSignalCount: waterSignals, builtSurfaceSignalCount: builtSignals, surfaceTemperatureShiftCount: temperatureSignals, hotspotCount: hotspots.length, meanNdviDelta: metrics.ndvi.meanDelta, meanNdwiDelta: metrics.ndwi.meanDelta, meanNdbiDelta: metrics.ndbi.meanDelta, meanLstDeltaC: metrics.lstC.meanDelta },
       observedSignals: observed,
-      aiHypotheses: hypotheses,
+      ruleBasedInterpretations: interpretations,
       hotspots: hotspots.slice(0, Math.max(1, Math.min(100, Number(options.maxHotspots) || 20))),
       limitations: [
         "All input observations are synthetic and are not satellite measurements.",
         "A surface-water index does not measure groundwater availability or water quality.",
         "Land-surface temperature is not air temperature.",
         "A local index change does not prove global warming or establish causation.",
-        "Hypotheses require independent evidence and expert review."
+        "Rule-based interpretations require independent evidence and expert review."
       ]
     };
   }
