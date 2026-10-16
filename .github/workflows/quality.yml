@@ -24,6 +24,8 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break || sleep 1; done
           npx lighthouse http://127.0.0.1:4173/ --chrome-flags="--headless --no-sandbox" --only-categories=accessibility,performance --output=json --output-path=./lighthouse-report.json
+      - name: Print Lighthouse scores
+        run: node -e 'const r=require("./lighthouse-report.json"); console.log("LIGHTHOUSE accessibility="+Math.round(r.categories.accessibility.score*100)+" performance="+Math.round(r.categories.performance.score*100));'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
