@@ -17,3 +17,9 @@ temp/
 .env
 .env.*
 !.env.example
+# Build and browser test output
+node_modules/
+dist/
+playwright-report/
+test-results/
+lighthouse-report.json
