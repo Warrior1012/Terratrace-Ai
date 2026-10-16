@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added the interactive analysis workflow and results summary with synthetic-data labels.
+- Added 20 additional workflow-oriented assertions.
+
+## [0.4.0] - 2026-10-16
+
+- Stage 4: connected the setup form to analysis aggregation and displayed signals, hypotheses, and ranked review cells.
+
 - Added analysis aggregation, data completeness, ranked hotspots, and distinct observed-signal versus AI-hypothesis records.
 - Added 36 tests for analysis statistics, validation, provenance, metrics, and limitations.
 

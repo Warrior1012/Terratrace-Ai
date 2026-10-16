@@ -47,6 +47,13 @@ Open `index.html` in a modern browser, or serve this folder with any static HTTP
 - Expanded the browser test harness with 36 analysis assertions; use `?test=1` to run the combined suite.
 - All results remain synthetic; confidence labels are qualitative and not statistically calibrated.
 
+## Stage 4 status
+
+- Connected the area-of-interest form to the seeded synthetic analysis pipeline.
+- Added summary cards, simulated observed-signal records, low-confidence AI hypotheses, ranked review cells, and visible limitations.
+- Added 20 workflow-oriented analysis assertions. The combined browser suite now contains 116 assertions; execution in a real browser is not yet verified.
+- Analysis period and focus currently affect the reproducible sample seed and labels; they do not represent real date filters or separate scientific models.
+
 ## GitHub Pages
 
 In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
@@ -57,7 +64,7 @@ In the repository, open **Settings → Pages**, select **Deploy from a branch**,
 - [x] Stage 1 — responsive shell, design system, debug panel, test harness
 - [x] Stage 2 — deterministic synthetic data, indices, change detection
 - [ ] Stage 3 — analysis layer and uncertainty handling
-- [ ] Stage 4 — interactive analysis workflow
+- [x] Stage 4 — interactive analysis workflow
 - [ ] Stage 5 — result maps and charts
 - [ ] Stage 6 — module-specific views
 - [ ] Stage 7 — downloadable report
