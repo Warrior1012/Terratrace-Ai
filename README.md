@@ -40,7 +40,7 @@ There is no AI model or serverless AI proxy in this repository. The interpretati
 
 ## Run and build locally
 
-Requires Node.js 20 or newer and npm. The build step self-hosts the pinned Leaflet and GeoTIFF.js libraries so the production page does not load JavaScript or CSS from a CDN.
+Requires Node.js 22 or newer and npm. The build step self-hosts the pinned Leaflet and GeoTIFF.js libraries so the production page does not load JavaScript or CSS from a CDN.
 
 ```sh
 npm install
