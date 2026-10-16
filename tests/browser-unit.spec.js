@@ -4,5 +4,5 @@ test("fixed raster calculation suite passes in Chromium", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-tests", "passed", { timeout: 15000 });
   const result = JSON.parse(await page.locator("#test-output").textContent());
   expect(result.failed).toBe(0);
-  expect(result.passed).toBeGreaterThanOrEqual(21);
+  expect(result.passed).toBeGreaterThanOrEqual(22);
 });
