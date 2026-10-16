@@ -79,3 +79,26 @@ test("legal page navigation remains visible at mobile width", async ({ page }) =
   await expect(page.locator(".legal-header .site-nav")).toBeVisible();
   await expect(page.locator('.legal-header .site-nav a[href="privacy.html"]')).toBeVisible();
 });
+
+test("live Sentinel-2 scenes and COG windows produce a measured comparison", async ({ page }) => {
+  test.setTimeout(120000);
+  await page.goto("/");
+  await page.getByLabel("Study area name").fill("Live data smoke test");
+  await page.getByLabel("Earlier date").fill("2024-10-10");
+  await page.getByLabel("Later date").fill("2025-10-10");
+  await page.evaluate(() => {
+    window.TT.appMap.fire("click", { latlng: window.L.latLng(28.58, 77.32) });
+    window.TT.appMap.fire("click", { latlng: window.L.latLng(28.60, 77.34) });
+  });
+  await page.getByRole("button", { name: "Compare selected dates" }).click();
+  await expect.poll(async () => {
+    const failed = await page.locator("#results-error").isVisible();
+    const complete = await page.locator("#scene-details").isVisible();
+    return failed || complete;
+  }, { timeout: 110000 }).toBe(true);
+  await expect(page.locator("#results-error")).toBeHidden();
+  await expect(page.locator("#scene-details")).toBeVisible();
+  await expect(page.locator("#scene-details")).toContainText("Cloud cover");
+  await expect(page.locator("#class-results")).toContainText("NDVI");
+  await expect(page.locator("#export-report")).toBeEnabled();
+});
