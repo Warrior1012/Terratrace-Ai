@@ -56,7 +56,7 @@
 <div class="date-grid"><label class="field"><span>Earlier date</span><input id="date-before" type="date" value="2024-06-15" required></label><label class="field"><span>Later date</span><input id="date-after" type="date" value="2025-06-15" required></label></div>
 <div class="map-actions"><button class="button button-secondary" id="draw-aoi" type="button">Draw area on map</button><button class="button button-quiet" id="clear-aoi" type="button">Clear area</button></div>
 <p id="aoi-status" class="field-help" aria-live="polite">Choose Draw area, then tap two map corners to define a rectangle.</p>
-<div class="size-warning" id="size-warning" hidden>Large areas may require more raster data. Keep the rectangle small. The analysis is capped to 256 by 256 output pixels.</div>
+<div class="size-warning" id="size-warning" hidden>Large areas may require more raster data. Keep the rectangle small. The analysis is capped to a 128 by 128 output grid.</div>
 
 <button id="run-analysis" class="button button-primary button-wide" type="button">Compare selected dates</button>
 <p id="run-status" class="status-message" role="status" aria-live="polite">Select a rectangle on the map before running a real-data analysis.</p>
