@@ -48,7 +48,7 @@ test("browser regression suite passes deterministic raster calculations", async 
   await expect(page.locator("html")).toHaveAttribute("data-tests", "passed", { timeout: 15000 });
   const output = JSON.parse(await page.locator("#test-output").textContent());
   expect(output.failed).toBe(0);
-  expect(output.passed).toBeGreaterThanOrEqual(21);
+  expect(output.passed).toBeGreaterThanOrEqual(22);
 });
 
 test("sample report and CSV exports download with clear labeling", async ({ page }) => {
