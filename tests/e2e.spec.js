@@ -69,8 +69,7 @@ test("sample report and CSV exports download with clear labeling", async ({ page
 
 test("active navigation and breadcrumb follow scrolling", async ({ page }) => {
   await page.goto("/");
-  await page.locator("#modules").scrollIntoViewIfNeeded();
-  await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; const section = document.querySelector("#modules"); window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY + 20); window.dispatchEvent(new Event("scroll")); });
   await expect(page.locator('#site-nav a[href="#modules"]')).toHaveClass(/active/, { timeout: 5000 });
   await expect(page.locator("#breadcrumb")).toHaveText("Modules");
 });
@@ -98,6 +97,8 @@ test("live Sentinel-2 scenes and COG windows produce a measured comparison", asy
     const complete = await page.locator("#scene-details").isVisible();
     return failed || complete;
   }, { timeout: 110000 }).toBe(true);
+  const liveError = await page.locator("#results-error").textContent();
+  if (liveError) console.log("LIVE_DATA_ERROR: " + liveError);
   await expect(page.locator("#results-error")).toBeHidden();
   await expect(page.locator("#scene-details")).toBeVisible();
   await expect(page.locator("#scene-details")).toContainText("Cloud cover");
