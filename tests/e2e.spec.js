@@ -32,7 +32,7 @@ test("failed real-data request shows an error without sample fallback", async ({
   await page.goto("/");
   const map = page.locator("#map");
   await page.getByRole("button", { name: "Draw area on map" }).click();
-  await page.evaluate(() => { window.TT.appMap.fire("click", { latlng: window.L.latLng(20, 77) }); window.TT.appMap.fire("click", { latlng: window.L.latLng(20.1, 77.1) }); });
+  await page.evaluate(() => { window.TT.appMap.fire("click", { latlng: window.L.latLng(20, 77) }); window.TT.appMap.fire("click", { latlng: window.L.latLng(20.02, 77.02) }); });
   await page.getByRole("button", { name: "Compare selected dates" }).click();
   await expect(page.locator("#results-error")).toContainText(/Earth Search could not be reached/i, { timeout: 15000 });
   await expect(page.getByText(/SAMPLE DATA.*Deterministic demonstration only/i)).toHaveCount(0);
