@@ -2,106 +2,106 @@
 
 **From satellite changes to climate decisions.**
 
-TerraTrace is a mobile-first, static web prototype for exploring climate-related signals from satellite-style observations. This prototype uses **synthetic demo data only**. It does not download or analyze real satellite imagery and must not be used for operational, environmental, financial, or safety decisions.
+TerraTrace is a static, browser-side prototype for comparing Sentinel-2 Level-2A imagery across two dates for a user-selected rectangular area. Real-data mode is the default. A separate Sample data toggle runs a deterministic demonstration and is never used as a fallback when real-data requests fail.
 
-## Prototype modules
+## What is real and what is simulated
 
-- **ClimateWatch** — illustrative vegetation and land-surface change signals.
-- **AquaCycle** — illustrative surface-water and rainfall context.
-- **SolarScope** — preliminary solar-siting screening concept, not an engineering assessment.
-- **ClimateRisk** — illustrative exposure indicators and uncertainty.
+### Real-data mode
 
-## Important interpretation limits
+- Queries the Element 84 Earth Search STAC API at `https://earth-search.aws.element84.com/v1` for Sentinel-2 Level-2A scenes.
+- Searches within 15 days of each requested date and chooses the scene with the lowest `eo:cloud_cover` for that date. The actual acquisition date, scene ID and cloud percentage are shown.
+- Reads the red (B04), near-infrared (B08), green (B03) and SWIR (B11) cloud-optimized GeoTIFF assets in the browser with GeoTIFF.js.
+- Computes NDVI, NDWI, MNDWI and NDBI per pixel and reports mean differences, increase/stable/decrease classes, valid pixel counts, estimated area and share of valid pixels.
+- Uses a Leaflet map with OpenStreetMap attribution for drawing a rectangular area and showing a resampled NDVI change overlay.
+- Caps the analysis at 100 square kilometres and resamples the selected raster window to a 128 by 128 output grid. A warning appears above 25 square kilometres.
+- Uses a suitable COG overview when one intersects the requested area and has enough pixels for the output grid. Bands with different native resolutions are sampled onto a common grid.
 
-- Surface water is not the same as groundwater availability or water quality.
-- Land-surface temperature (LST) is not air temperature.
-- Satellite imagery or a local change signal alone does not prove global warming or establish causation.
-- SolarScope is screening-only and is not a substitute for a site survey, grid study, or professional engineering assessment.
-- Any AI-generated hypothesis must remain clearly separate from observed/simulated measurements.
+Real-data requests depend on public APIs, COG range requests, browser CORS support, scene availability, and network connectivity. A failure produces an error; the app does not silently replace a failed real-data analysis with sample numbers.
 
-## Run locally
+### Sample data mode
 
-Open `index.html` in a modern browser, or serve this folder with any static HTTP server. No build step, backend, API key, or package installation is required. Leaflet and Chart.js are loaded from pinned CDN versions when internet access is available; graceful fallbacks should be used where possible.
+- Uses deterministic generated values from the local sample generator.
+- Shows the label **Sample data** and uses the generic label **Sample site**.
+- Does not represent a real location, coordinates, satellite observation, or measured environmental result.
+- Is available only when the user explicitly selects Sample data.
 
-## Stage 1 status
+### Interpretation labels
 
-- Responsive mobile-first workspace shell and navigation added.
-- Four module cards and sample analysis setup form added.
-- Synthetic-data disclosure, keyboard focus styles, skip link, and reduced-motion handling added.
-- `?debug=1` opens diagnostics; `?test=1` runs the starter test harness.
-- Analysis button currently prepares a local demo workspace only; pipeline and results arrive in later stages.
+There is no AI model or serverless AI proxy in this repository. The interpretation panel is named **Rule-based interpretation** and contains explanatory prompts based on the measured index values. These prompts are not model output and do not establish causes.
 
-## Stage 2 status
+## Scientific and operational limitations
 
-- Added deterministic seeded synthetic grid data with paired before/after observations.
-- Added normalized-difference utilities for NDVI, NDWI, and NDBI, plus land-surface temperature context.
-- Added threshold-based change classes and simulated-change flags.
-- Expanded the browser test harness to 50+ assertions. Open the published site with `?test=1` to run them and inspect results in the diagnostics panel.
-- These are synthetic values, not actual satellite measurements; thresholds are illustrative and not scientifically calibrated.
+- NDVI, NDWI, MNDWI and NDBI are spectral indices. They are not direct measurements of ecosystem health, groundwater, drinking-water quality, air temperature, or climate causation.
+- The browser workflow does not use a full Sentinel-2 scene classification mask. Filtering invalid and non-reflectance values is not equivalent to cloud and cloud-shadow masking.
+- Seasonal effects, atmospheric conditions, view geometry, mixed pixels, resampling, missing data and differences in acquisition dates can affect the result.
+- Area values are estimates based on the projected bounding rectangle and the resampled grid. They are not parcel boundaries or a survey.
+- Validate results with independent data and qualified experts before operational, environmental, financial, safety, legal or engineering decisions.
+- Solar suitability and climate-risk language is screening context only, not a validated forecast.
 
-## Stage 3 status
+## Run and build locally
 
-- Added aggregate statistics, percent changed, valid/missing counts, and per-index summaries.
-- Added ranked synthetic hotspots and data-completeness reporting.
-- Kept observed/simulated signals distinct from low-confidence AI hypotheses that require validation.
-- Expanded the browser test harness with 36 analysis assertions; use `?test=1` to run the combined suite.
-- All results remain synthetic; confidence labels are qualitative and not statistically calibrated.
+Requires Node.js 20 or newer and npm. The build step self-hosts the pinned Leaflet and GeoTIFF.js libraries so the production page does not load JavaScript or CSS from a CDN.
 
-## Stage 4 status
+```sh
+npm install
+npm run build:site
+python3 -m http.server 4173 --directory dist
+```
 
-- Connected the area-of-interest form to the seeded synthetic analysis pipeline.
-- Added summary cards, simulated observed-signal records, low-confidence AI hypotheses, ranked review cells, and visible limitations.
-- Added 20 workflow-oriented analysis assertions. The combined browser suite now contains 116 assertions; execution in a real browser is not yet verified.
-- Analysis period and focus currently affect the reproducible sample seed and labels; they do not represent real date filters or separate scientific models.
+Open the local server at `http://127.0.0.1:4173/`. The source `index.html` references the self-hosted files generated in `dist/vendor/`, so preview the built site rather than opening the source HTML directly.
 
-## Stage 5 status
+## Tests and audits
 
-- Added a responsive bar chart for mean synthetic changes across NDVI, NDWI, NDBI, and LST, with an accessible table fallback when Chart.js is unavailable.
-- Added a synthetic grid visualization with an indicator selector. It is explicitly not a geographic map and has no real coordinates or satellite tiles.
-- Added 20 visualization-contract assertions. The combined suite now contains 136 assertions; browser execution remains unverified.
+```sh
+npx playwright install chromium
+npm run test:e2e
+```
 
-## Stage 6 status
+The separate test page is `/tests/test.html`. It includes deterministic raster-calculation tests using a fixed in-memory raster fixture. The production page does not load the test harness or a debug panel.
 
-- Added distinct ClimateWatch, AquaCycle, SolarScope, and ClimateRisk guidance panels with module-specific indicators, investigation questions, and limitations.
-- Module links open in-page details and can set the grid indicator for the next review.
-- Added 15 module-contract assertions. The combined test suite includes 151 assertions; execution in a real browser remains unverified.
+Run Lighthouse after building and serving the site:
 
-## GitHub Pages
+```sh
+npx lighthouse http://127.0.0.1:4173/ --chrome-flags="--headless --no-sandbox" --only-categories=accessibility,performance --output=json --output-path=./lighthouse-report.json
+```
 
-In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/ (root)`, then save. After GitHub finishes publishing, the site should be available at `https://warrior1012.github.io/Terratrace-Ai/` (GitHub Pages may take a few minutes). This link is a predicted URL until Pages is enabled and verified.
+The GitHub Actions quality workflow runs Chromium tests and produces a Lighthouse JSON artifact. Do not treat the workflow as passed until a run has completed successfully and the results have been reviewed. The workflow has not been verified from this editing environment.
 
-## Quality and roadmap
+## GitHub repository setup
 
-- [ ] Stage 0 — repository setup and project conventions
-- [x] Stage 1 — responsive shell, design system, debug panel, test harness
-- [x] Stage 2 — deterministic synthetic data, indices, change detection
-- [x] Stage 3 — analysis layer and uncertainty handling
-- [x] Stage 4 — interactive analysis workflow
-- [x] Stage 5 — result maps and charts
-- [x] Stage 6 — module-specific views
-- [x] Stage 7 — downloadable report
-- [x] Stage 8 — About view, accessibility, security, and polish
-- [ ] Stage 9 — independent QA and regression audit
+Suggested repository description:
 
-Each stage should update this checklist, `CHANGELOG.md`, and tests. Do not mark a stage complete until its implementation and checks have been reviewed.
+> Compare two Sentinel-2 dates for a selected area with measured spectral-index changes, a map and downloadable reports.
 
-## Stage 7 report exports
+Suggested topics: `earth-observation`, `sentinel-2`, `remote-sensing`, `geospatial`, `climate`, `leaflet`, `static-site`.
 
-- Export a standalone HTML report containing study settings, summary metrics, simulated signals, AI hypotheses, priority review cells, and limitations.
-- Open the downloaded HTML report in a browser and use its print action to print or save as PDF.
-- Export the signal, hypothesis, and hotspot tables as CSV for spreadsheet review.
-- Exported values are synthetic demo data only. The combined test suite includes 166 assertions; real-browser execution remains unverified.
+To add these in GitHub, open the repository page, select the settings gear beside About, enter the description, add the topics, and save. After the Pages deployment succeeds, set the website URL to the verified published URL. The expected project URL pattern is based on the repository name, but it is not confirmed live yet.
 
-## Stage 8 About view
+## GitHub Pages deployment
 
-- Added a responsive, accessible conceptual pipeline diagram and a mobile step-by-step alternative.
-- Documented proposed Sentinel-2, Landsat, CHIRPS rainfall, and SRTM terrain inputs; none are connected in the demo.
-- Added limitations, a four-phase roadmap, and explicitly indicative business pricing (₹999–₹4,999 per report; ₹9,999 professional tier with billing period TBD).
-- Added visible keyboard focus styling, reduced-motion support, and 15 About-view contract assertions. Pricing is a concept, not a live offer.
+A Pages workflow is included at `.github/workflows/pages.yml`. In GitHub, open **Settings > Pages** and set the build and deployment source to **GitHub Actions**. The workflow builds `dist/` with the pinned local libraries and deploys that folder on pushes to `main`. Confirm the Actions run succeeds and open the URL shown by the deployment before sharing it as live.
 
-## Team
+The website URL, repository About description/topics and Pages setting cannot be confirmed from this repository code alone.
 
-TerraTrace Team: Akriti Verma, Sonali Kumari, Tanishq Agarwal, Aditya Raj.
+## Brand assets and launch inputs
+
+- The repository currently does not contain `assets/logo.png`. Add the real TerraTrace globe, satellite and leaf logo at that exact path.
+- After adding it, run `npm run assets:brand` to generate `favicon.ico`, a 32 pixel PNG, a 180 pixel Apple touch icon and a 1200 by 630 social image from the supplied logo.
+- Until the logo is supplied and the generator is run, the page uses an inline SVG fallback mark. The generated Apple touch and social image files are not present yet.
+- Replace the clearly marked TODO contact email in `terms.html` and `privacy.html` before launch.
+- Add a custom domain only if you own and intend to configure one.
+
+## Third-party requests
+
+The built page self-hosts Leaflet 1.9.4 and GeoTIFF.js 2.1.3. When used, it also requests public scene metadata from Element 84 Earth Search, Sentinel-2 COG byte ranges from the asset hosts, and OpenStreetMap map tiles. The app does not implement accounts, analytics, or its own tracking cookies. Read `terms.html` and `privacy.html`.
+
+## Design and map library
+
+The interface uses the maroon and blush palette, serif display headings, visible keyboard focus, responsive layouts and reduced-motion support. The geographic map is built with **Leaflet**, not MapLibre GL JS. Update the pitch deck to say Leaflet unless the implementation is deliberately migrated to MapLibre.
+
+## Pricing concept
+
+The About section shows proposed, unvalidated pricing: Pay per analysis at Rs 999 to 4,999 per report, Professional at Rs 9,999 to 29,999 per month, and Enterprise custom. These are concepts, not available paid offers.
 
 ## License
 
