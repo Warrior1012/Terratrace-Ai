@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added analysis aggregation, data completeness, ranked hotspots, and distinct observed-signal versus AI-hypothesis records.
+- Added 36 tests for analysis statistics, validation, provenance, metrics, and limitations.
+
+## [0.3.0] - 2026-10-16
+
+- Stage 3: implemented synthetic analysis summaries and evidence-separated hypotheses.
+
 - Added seeded synthetic landscape generation, vegetation/water/built-up indices, and change classification.
 - Expanded browser tests to cover deterministic data, ranges, index calculations, and detection behavior.
 
