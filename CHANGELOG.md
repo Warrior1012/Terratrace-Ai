@@ -4,6 +4,13 @@ All notable changes to TerraTrace are documented here.
 
 ## [Unreleased]
 
+- Added synthetic indicator bar chart and responsive synthetic change-grid visualization.
+- Added a table fallback for chart-library unavailability and 20 visualization assertions.
+
+## [0.5.0] - 2026-10-16
+
+- Stage 5: added results chart and synthetic grid visualization.
+
 - Added the interactive analysis workflow and results summary with synthetic-data labels.
 - Added 20 additional workflow-oriented assertions.
 
